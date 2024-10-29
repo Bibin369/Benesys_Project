@@ -1,0 +1,206 @@
+.User-interface-container {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.top-header-image {
+  margin: 20px;
+}
+
+.top-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.top-header-profile {
+  margin: 20px;
+}
+
+.middle-options {
+  display: flex;
+  align-items: center;
+}
+
+.middle-menu-image1 {
+  width: 16px;
+  height: 16px;
+  position: relative;
+  left: 10px;
+}
+
+.sidebar {
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-name {
+  font-family: "PublicSans-SemiBold", sans-serif;
+  font-weight: normal;
+  color: #212b36;
+  font-size: 14px;
+}
+
+.role {
+  font-family: "PublicSans-Regular", sans-serif;
+  font-weight: normal;
+  color: #637381;
+  font-size: 14px;
+}
+
+.sidebar-menu-1 {
+  display: flex;
+  left: 20px;
+  position: relative;
+  margin-bottom: 10px;
+  align-items: center;
+  padding: 10px;
+  transition: background-color 0.3s, font-weight 0.3s;
+}
+
+.sidebar-menu-1:hover {
+  background-color: #d9fff3;
+}
+
+.sidebar-menu-1:hover .sidebar-menu-text-1 {
+  font-weight: bold;
+  color: #212b36; /* Ensures readability */
+}
+
+.sidebar-menu-text-1 {
+  font-family: "PublicSans-Regular", sans-serif;
+  font-weight: normal;
+  color: #637381;
+  font-size: 12px;
+  transition: font-weight 0.3s;
+}
+
+.sidebar-menu-1.hovered {
+  background-color: #d9fff3;
+}
+
+.sidebar-menu-1.hovered .sidebar-menu-text-1 {
+  font-weight: bold;
+  color: #212b36;
+}
+
+.dropdown-menu {
+  background-color: white;
+  border-radius: 4px;
+  position: relative;
+  left: 50px;
+}
+
+.dropdown-menu ul {
+  list-style-type: disc;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown-menu li {
+  margin: 20px 0;
+  cursor: pointer;
+  font-family: "PublicSans-Regular", sans-serif;
+  font-weight: normal;
+  color: #637381;
+  font-size: 12px;
+}
+
+.dropdown-icon {
+  margin-left: auto;
+  transition: transform 0.2s;
+  color: #054832;
+}
+
+.sidebar-menu-1:hover .dropdown-icon {
+  transform: rotate(180deg);
+}
+
+.Main-content-top {
+  display: flex;
+  justify-content: space-between;
+  height: 166px;
+}
+
+.Top-card-1 {
+  width: 335px;
+  height: 166px;
+  background-color: #d9fff3;
+  display: flex;
+  justify-content: space-around;
+}
+
+.Main-content-top {
+  display: flex;
+}
+
+.Top-card-1-text {
+}
+
+.card-text-1 {
+  font-family: "PublicSans-SemiBold", sans-serif;
+  font-weight: 600;
+  color: #212b36;
+  font-size: 14px;
+}
+
+.card-text-2 {
+  font-family: "PublicSans-Bold", sans-serif;
+  font-weight: 700;
+  color: #212b36;
+  font-size: 32px;
+}
+
+.card-text-3 {
+  font-family: "PublicSans-Light", sans-serif;
+  font-weight: 300;
+  color: #212b36;
+  font-size: 13px;
+}
+
+.middle-menu-text {
+  font-family: "Public Sans", sans-serif;
+  font-weight: 400;
+  color: #212b36;
+  font-size: 14px;
+  position: relative;
+  left: 20px;
+}
+
+.middle-table-top-text {
+  font-family: "PublicSans-Bold", sans-serif;
+  font-weight: 700; /* Adjusted for bold */
+  color: #212b36;
+  font-size: 24px;
+}
+
+.table-header-wrapper {
+  display: flex;
+}
+
+.search-box {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  font-family: "Public Sans", sans-serif;
+  outline: none;
+  width: 1100px;
+}
+
+/* CSS for the gradient overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(4, 46, 7, 0.5));
+  backdrop-filter: blur(5px);
+  z-index: 1;
+}
+
+/* Ensure the modal appears above the overlay */
+.dialog-container {
+  position: relative;
+  z-index: 2; /* Modal should appear above the overlay */
+}
