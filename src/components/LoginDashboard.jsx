@@ -94,7 +94,7 @@ const LoginDashboard = () => {
         dispatch(login({ role }));
         navigate("/UserDashboard");
       } catch (error) {
-        console.error("Login error:", error); // Log the error
+        console.error("Login error:", error);
         setSnackbarMessage(
           error.response?.data?.message || "Invalid credentials"
         );
@@ -108,21 +108,53 @@ const LoginDashboard = () => {
   };
 
   return (
-    <Grid container className="login-dashboard-container">
-      <Grid item xs={12} className="top-logo-wrapper">
+    <Grid
+      container
+      xs={12}
+      classname="Login-Main"
+      sx={{ width: "100vw", height: "100vh", overflow: "hidden" }}
+    >
+      <Grid item xs={12} classname="Login-Header" sx={{ padding: "20px" }}>
         <img src={logo} alt="Benesys Logo" />
       </Grid>
-      <Grid container className="login-dashboard-wrapper">
+      <Grid
+        container
+        xs={12}
+        classname="Login-Components-wrapper"
+        sx={{
+          width: "100vw",
+          height: "100vh",
+          display: "flex",
+          "flex-wrap": "nowrap",
+        }}
+      >
         {!isMobile && (
-          <Grid item xs={12} md={6} className="image-wrapper">
+          <Grid
+            container
+            xs={6}
+            classname="Side-1"
+            sx={{ width: "100vw", height: "100vh" }}
+          >
             <img
               src={sectionlogo}
               alt="Section Logo"
               className="section-logo"
+              style={{ right: "10px", top: "45px", width: "100%" }}
             />
           </Grid>
         )}
-        <Grid item xs={12} md={6} className="form-wrapper">
+        <Grid
+          container
+          xs={6}
+          classname="Side-2"
+          sx={{
+            width: "100vw",
+            height: "100vh",
+            display: "Flex",
+            "align-items": "center",
+            "justify-content": "center",
+          }}
+        >
           <Box className="form-container">
             <h1 className="form-top-text1">Sign in to Admin</h1>
             <p className="form-top-text2">

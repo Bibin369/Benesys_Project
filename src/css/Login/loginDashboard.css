@@ -1,47 +1,3 @@
-
-.login-dashboard-container {
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.top-logo-wrapper {
-  padding: 10px 40px;
-  height: 52px;
-}
-
-.login-dashboard-wrapper {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  align-items: flex-end;
-}
-
-.image-wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
-
-.section-logo {
-  /* width: 85%; */
-  height: auto;
-  object-fit: contain;
-  right: 102px;
-  position: relative;
-  bottom: 45px;
-}
-
-.form-wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem;
-  position: relative;
-  bottom: 150px;
-}
-
 .form-container {
   padding: 4rem;
   /* display: flex;
@@ -74,7 +30,7 @@
 }
 
 .textfield:first-child {
-  margin-bottom: 1.5rem; /* Adjust this value for the gap you want */
+  margin-bottom: 1.5rem;
 }
 
 .checkbox-text {
@@ -115,32 +71,4 @@
   color: #ffffff;
   box-shadow: 0px 8px 16px #05483226;
   border-radius: 8px;
-}
-
-@media (max-width: 900px) {
-  .login-dashboard-wrapper {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .image-wrapper {
-    display: none;
-  }
-
-  .top-logo-wrapper,
-  .section-logo {
-    width: 100%;
-    height: auto;
-  }
-}
-
-@media (max-width: 600px) {
-  .button-1 {
-    width: 100%;
-    margin: 20px 0;
-  }
-
-  .options-container label {
-    font-size: 12px;
-  }
 }
