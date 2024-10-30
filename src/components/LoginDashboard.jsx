@@ -15,14 +15,11 @@ import {
 } from "@mui/material"; // Import Snackbar and Alert
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { login } from "../store";
-import { users } from "../mockData";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import logo from "../../src/assets/images/benesys-logo.jpg";
 import sectionlogo from "../../src/assets/images/Mask Group 71.jpg";
-import axios from "axios";
-import { AES } from "crypto-js";
+import { loginUser } from "../features/auth/authSlice";
 
 const CustomTextField = styled(TextField)(({ hasData }) => ({
   "& .MuiOutlinedInput-root": {
@@ -54,8 +51,6 @@ const LoginDashboard = () => {
     setShowPassword((prev) => !prev);
   };
 
-  const Api = "https://apidev-hunterfinancial.oneteamus.com/api/1.0/Token";
-
   const validationSchema = Yup.object({
     email: Yup.string().email("Invalid email address"),
     // .matches(
@@ -78,26 +73,13 @@ const LoginDashboard = () => {
     validationSchema,
     onSubmit: async (values) => {
       try {
-        const response = await axios.post(Api, {
-          username: values.email,
-          password: values.password,
-        });
-        const { token, role } = response.data;
-
-        const secretKey = "bibin_2001";
-
-        const encryptedData = AES.encrypt(token, secretKey).toString();
-
-        localStorage.setItem("token", encryptedData);
-        console.log(token);
-
-        dispatch(login({ role }));
+        await dispatch(
+          loginUser({ email: values.email, password: values.password })
+        ).unwrap();
         navigate("/UserDashboard");
       } catch (error) {
         console.error("Login error:", error);
-        setSnackbarMessage(
-          error.response?.data?.message || "Invalid credentials"
-        );
+        setSnackbarMessage(error || "Invalid credentials");
         setSnackbarOpen(true);
       }
     },

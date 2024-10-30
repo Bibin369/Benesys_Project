@@ -1,5 +1,5 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
   Box,
@@ -40,7 +40,7 @@ import card3 from "../../../src/assets/images/Group 288.png";
 import img5 from "../../../src/assets/images/Component 179.png";
 import img6 from "../../../src/assets/images/Group 442.png";
 import { employees } from "../../mockData";
-
+import { fetchData } from "../../features/data/dataSlice";
 
 const UserDashboard = () => {
   const role = useSelector((state) => state.auth.role);
@@ -49,6 +49,13 @@ const UserDashboard = () => {
   const [openLogoutModal, setOpenLogoutModal] = React.useState(false);
   const navigate = useNavigate();
   const [rows, setRows] = React.useState(employees);
+
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.data.items);
+
+  useEffect(() => {
+    dispatch(fetchData());
+  }, [dispatch]);
 
   const toggleReimbursementDropdown = () => {
     setIsReimbursementOpen(!isReimbursementOpen);
@@ -67,6 +74,7 @@ const UserDashboard = () => {
   };
 
   const handleConfirmLogout = () => {
+    localStorage.removeItem("token");
     navigate("/");
   };
 
@@ -258,11 +266,13 @@ const UserDashboard = () => {
                 <TableHead>
                   <TableRow>
                     {[
-                      "Employer Name",
-                      "Phone Number",
-                      "Email Address",
-                      "Employer ID",
-                      "Standing",
+                      "Loan Number",
+                      "Amount Financed",
+                      "Cost of Work Orde",
+                      "Stips Status",
+                      "Created Date",
+                      "Created By",
+                      "Status",
                     ].map((heading) => (
                       <TableCell
                         key={heading}
@@ -279,35 +289,53 @@ const UserDashboard = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {rows.map((row, index) => (
-                    <TableRow
-                      key={index}
-                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                    >
-                      <TableCell align="left">{row.empName}</TableCell>
-                      <TableCell align="left">{row.phno}</TableCell>
-                      <TableCell align="left">{row.emailId}</TableCell>
-                      <TableCell align="left">{row.employerId}</TableCell>
-                      <TableCell align="left">
-                        <Switch
-                          checked={row.standing === 1}
-                          onChange={() => handleToggleStanding(index)}
-                          color={row.standing === 1 ? "success" : "warning"}
-                          {...label}
-                        />
-                        <span
-                          style={{
-                            fontWeight: "bold",
-                            fontFamily: "PublicSans-Bold, sans-serif",
-                            color: "#637381",
-                            fontSize: "12px",
-                          }}
-                        >
-                          {row.standing === 1 ? "Eligible" : "On Hold"}
-                        </span>
+                  {data && data.length > 0 ? (
+                    data.map((item, index) => (
+                      <TableRow
+                        key={index}
+                        sx={{
+                          "&:last-child td, &:last-child th": { border: 0 },
+                        }}
+                      >
+                        <TableCell align="left">{item.loanNumber}</TableCell>
+                        <TableCell align="left">
+                          {item.amountFinanced}
+                        </TableCell>
+                        <TableCell align="left">
+                          {item.costOfWorkOrder}
+                        </TableCell>
+                        <TableCell align="left">{item.stipsStatus}</TableCell>
+                        <TableCell align="left">{item.createdDate}</TableCell>
+                        <TableCell align="left">
+                          {item.createdUserName}
+                        </TableCell>
+                        <TableCell align="left">
+                          <Switch
+                            checked={item.standing === 1}
+                            onChange={() => handleToggleStanding(index)}
+                            color={item.status === 1 ? "success" : "warning"}
+                            {...label}
+                          />
+                          <span
+                            style={{
+                              fontWeight: "bold",
+                              fontFamily: "PublicSans-Bold, sans-serif",
+                              color: "#637381",
+                              fontSize: "12px",
+                            }}
+                          >
+                            {item.status === 1 ? "Eligible" : "On Hold"}
+                          </span>
+                        </TableCell>
+                      </TableRow>
+                    ))
+                  ) : (
+                    <TableRow>
+                      <TableCell colSpan={7} align="center">
+                        No data available
                       </TableCell>
                     </TableRow>
-                  ))}
+                  )}
                 </TableBody>
               </Table>
             </TableContainer>
